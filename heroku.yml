@@ -1,6 +1,6 @@
 setup:
   addons:
-    - plan: jawsdb-maria:kitefin
+    - plan: jawsdb-maria
       as: DATABASE
 build:
   docker:
