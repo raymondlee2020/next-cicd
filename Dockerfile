@@ -39,4 +39,4 @@ EXPOSE 3000
 # Uncomment the following line in case you want to disable telemetry.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-CMD npx prisma migrate deploy ; npx prisma generate ; yarn start
+CMD npx prisma generate ; yarn start
