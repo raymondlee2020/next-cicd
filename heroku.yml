@@ -8,7 +8,3 @@ build:
     migratedb: prisma/Dockerfile
 release:
   image: migratedb
-  command:
-    - echo "DB migrations is finished."
-run:
-  web: npx prisma generate ; yarn start
