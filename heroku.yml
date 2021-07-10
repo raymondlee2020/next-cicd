@@ -5,6 +5,9 @@ setup:
 build:
   docker:
     web: Dockerfile
-    migratedb: prisma/Dockerfile
+    # migratedb: prisma/Dockerfile
 release:
-  image: migratedb
+  image: node:alpine
+  command:
+    - ls
+    - npx prisma migrate deploy
