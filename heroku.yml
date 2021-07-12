@@ -5,6 +5,3 @@ setup:
 build:
   docker:
     web: Dockerfile
-    migrate: prisma/Dockerfile
-release:
-  image: migrate
