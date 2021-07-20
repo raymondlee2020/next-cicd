@@ -18,12 +18,6 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <h2 className={styles.title}>APP_URL: {APP_URL}</h2>
-
-        <h2 className={styles.title}>
-          NEXT_PUBLIC_APP_URL: {NEXT_PUBLIC_APP_URL}
-        </h2>
-
         <p className={styles.description}>
           Get started by editing{" "}
           <code className={styles.code}>pages/index.js</code>
