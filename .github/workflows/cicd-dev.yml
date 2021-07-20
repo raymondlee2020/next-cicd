@@ -20,4 +20,4 @@ jobs:
       - name: Test
         run: docker run -d -p 4000:4000 -e PORT=4000 next-cicd-dev
       - name: Curl
-        run: curl localhost:4000
+        run: curl 127.0.0.1:4000
