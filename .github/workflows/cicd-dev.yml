@@ -17,7 +17,9 @@ jobs:
           context: .
           load: true
           tags: next-cicd-dev:latest
-      - name: Test
+      - name: Run Container
         run: docker run -d -p 4000:4000 -e PORT=4000 next-cicd-dev
+      - name: Curl Test
+        run: curl https://www.google.com/
       - name: Curl
         run: curl 127.0.0.1:4000
