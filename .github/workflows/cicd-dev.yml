@@ -9,6 +9,12 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Test SSH
+        run: |
+          echo "${{ secrets.SSH_KEY }}" > test
+          ssh -i test ${{ secrets.USERNAME }}@${{ secrets.HOST }}
+          touch here.txt
+          exit
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
