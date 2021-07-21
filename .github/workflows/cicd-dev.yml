@@ -17,7 +17,14 @@ jobs:
           context: .
           load: true
           tags: next-cicd-dev:latest
-      - name: Run Container
-        run: |
-          docker run -d -p 4000:4000 -e PORT=4000 next-cicd-dev
-          docker ps
+      - name: Save Image
+        run: docker save next-cicd-dev:latest > next-cicd-dev.tar
+      - name: SCP
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: 22
+          key: ${{ secrets.SSH_KEY }}
+          source: "./next-cicd-dev.tar"
+          target: "~/"
