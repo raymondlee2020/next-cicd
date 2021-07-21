@@ -36,9 +36,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            whoami
             docker load --input next-cicd-dev.tar
-            docker stop $(docker ps -a -q --filter ancestor=next-cicd-dev)
+            docker images prune
+            docker stop $(docker ps -a -q)
             docker run -d --rm -p 4000:4000 -e PORT=4000 next-cicd-dev
             docker ps
-            rm next-cicd-dev.tar
