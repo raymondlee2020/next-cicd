@@ -10,7 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test secret
-        run: echo "${{ secrets.HOST }}"
+        run: |
+          echo "${{ secrets.SSH_KEY }}" > ./test.pem
+          ssh -i test.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }}
+          whoami
+          exit 
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
