@@ -9,13 +9,6 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Test SSH
-        run: |
-          echo "${{ secrets.SSH_KEY }}" > test
-          cat test
-          ssh -i test ${{ secrets.USERNAME }}@${{ secrets.HOST }}
-          touch here.txt
-          exit
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
@@ -35,3 +28,17 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "./next-cicd-dev.tar"
           target: "~/"
+      - name: Run Service
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            whoami
+            docker load --input next-cicd-dev.tar
+            docker stop $(docker ps -a -q --filter ancestor=next-cicd-dev)
+            docker run -d --rm -p 4000:4000 -e PORT=4000 next-cicd-dev
+            docker ps
+            rm next-cicd-dev.tar
