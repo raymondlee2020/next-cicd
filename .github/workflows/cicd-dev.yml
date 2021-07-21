@@ -12,6 +12,7 @@ jobs:
       - name: Test SSH
         run: |
           echo "${{ secrets.SSH_KEY }}" > test
+          cat test
           ssh -i test ${{ secrets.USERNAME }}@${{ secrets.HOST }}
           touch here.txt
           exit
