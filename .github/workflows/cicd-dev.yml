@@ -6,11 +6,13 @@ on:
       - dev
 
 jobs:
-  docker:
+  cicd-dev:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: View Context
+        run: ls
       - name: Build
         uses: docker/build-push-action@v2
         with:
@@ -28,6 +30,14 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "./next-cicd-dev.tar"
           target: "~/"
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Migrate Database
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: secrets.DATABASE_URL
       - name: Run Service
         uses: appleboy/ssh-action@master
         with:
