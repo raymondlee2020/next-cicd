@@ -1,0 +1,22 @@
+name: run-service
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        type: choice
+        required: true
+        description: Environment to run
+        options:
+        - dev
+        - prod
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: |
+          echo ${{ github.event.inputs.env }}
+          echo 'TEST="${{ secrets.TEST }}"' >> $GITHUB_ENV
+          echo ${{ env.TEST }}
