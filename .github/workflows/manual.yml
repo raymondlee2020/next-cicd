@@ -1,4 +1,4 @@
-name: run-service
+name: TEST
 
 on:
   workflow_dispatch:
@@ -19,4 +19,4 @@ jobs:
         run: |
           echo ${{ github.event.inputs.env }}
           echo 'TEST="${{ secrets.TEST }}"' >> $GITHUB_ENV
-          echo ${{ env.TEST }}
+          echo $TEST
