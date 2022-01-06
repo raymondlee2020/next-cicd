@@ -26,3 +26,4 @@ jobs:
           echo ${{ env.BRANCH }}
           echo ${{ env.BRANCH == 'dev' }}
           echo ${{ env.BRANCH == 'main' }}
+          echo "$GITHUB_CONTEXT"
