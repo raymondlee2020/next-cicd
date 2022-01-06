@@ -31,4 +31,4 @@ jobs:
           echo ${{ inputs.test }}
           echo 'VAR=' >> $GITHUB_ENV
           echo ${{ secrets.HOST == '' }}
-          echo ${{ secrets.VAR == 'input test' }}
+          echo ${{ env.VAR == 'input test' }}
