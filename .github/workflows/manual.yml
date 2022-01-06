@@ -37,3 +37,8 @@ jobs:
         if: ${{ env.ENV2 == 'false' }}
         run: |
           echo 'It is false.'
+  call:
+    needs: main
+    uses: raymondlee2020/next-cicd/.github/workflows/call.yml@main
+    with:
+      test: "input test"
