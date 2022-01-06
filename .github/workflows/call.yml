@@ -31,3 +31,5 @@ jobs:
           echo ${{ inputs.test }}
           echo ${{ secrets.HOST == '' }}
           echo ${{ env.VAR == 'input test' }}
+          echo ${{ ${GITHUB_REF##*/} == 'main' }}
+          echo ${{ ${GITHUB_REF##*/} == '???' }}
