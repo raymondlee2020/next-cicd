@@ -17,6 +17,9 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+      ENV1: ${{ 0 == 0 && 'true' || 'false' }}
+      ENV2: ${{ 0 == 1 && 'true' || 'false' }}
     steps:
       - name: Test
         run: |
@@ -26,7 +29,11 @@ jobs:
           echo ${GITHUB_REF#refs/heads/}
           echo ${GITHUB_REF##*/}
           echo "BRANCH=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
-      - name: Test2
-        if: ${{ env.BRANCH == 'main' }}
+      - name: ENV1
+        if: ${{ env.ENV1 == 'true' }}
         run: |
-          echo 'It is main.'
+          echo 'It is true.'
+      - name: ENV2
+        if: ${{ env.ENV2 == 'false' }}
+        run: |
+          echo 'It is false.'
