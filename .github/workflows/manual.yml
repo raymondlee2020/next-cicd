@@ -25,7 +25,8 @@ jobs:
           echo $TEST
           echo ${GITHUB_REF#refs/heads/}
           echo ${GITHUB_REF##*/}
+          echo "BRANCH=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
       - name: Test2
-        if: ${{ endsWith(github.ref, 'main') }}
+        if: ${{ env.BRANCH == 'main' }}
         run: |
           echo 'It is main.'
