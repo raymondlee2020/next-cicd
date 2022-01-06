@@ -21,7 +21,7 @@ jobs:
   main:
     runs-on: ubuntu-latest
     env:
-      VAR: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.test || inputs.env }}
+      VAR: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.env || inputs.test }}
     steps:
       - name: test
         run: |
