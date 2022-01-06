@@ -18,11 +18,13 @@ jobs:
   main:
     runs-on: ubuntu-latest
     env:
+      ENV: ${GITHUB_REF##*/}
       ENV1: ${{ 0 == 0 && 'true' || 'false' }}
       ENV2: ${{ 0 == 1 && 'true' || 'false' }}
     steps:
       - name: Test
         run: |
+          echo ${{ env.ENV == 'main' }}
           echo ${{ github.event.inputs.env }}
           echo 'TEST="${{ secrets.HOST }}"' >> $GITHUB_ENV
           echo $TEST
