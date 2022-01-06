@@ -23,6 +23,6 @@ jobs:
           echo ${GITHUB_REF#refs/heads/}
           echo ${GITHUB_REF##*/}
       - name: Test2
-        if: ${{ endsWith('123main', 'main') }}
+        if: ${{ endsWith(github.ref, 'main') }}
         run: |
-          echo 'It's main.'
+          echo 'It is main.'
