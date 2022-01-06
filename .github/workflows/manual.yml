@@ -22,7 +22,9 @@ jobs:
           echo $TEST
           echo ${GITHUB_REF#refs/heads/}
           echo ${GITHUB_REF##*/}
-          echo "BRANCH=$(echo ${GITHUB_REF##*/})"
-          echo "BRANCH=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
+          branch = ${GITHUB_REF##*/}
+          echo "BRANCH=$(echo branch)"
+          echo "BRANCH=$(echo branch)" >> $GITHUB_ENV
+          echo "${{ env.BRANCH }}"
           echo ${{ env.BRANCH == 'dev' }}
           echo ${{ env.BRANCH == 'main' }}
