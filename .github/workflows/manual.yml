@@ -21,3 +21,4 @@ jobs:
           echo 'TEST="${{ secrets.HOST }}"' >> $GITHUB_ENV
           echo $TEST
           echo ${GITHUB_REF#refs/heads/}
+          echo ${GITHUB_REF##*/}
