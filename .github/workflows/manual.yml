@@ -22,3 +22,5 @@ jobs:
           echo $TEST
           echo ${GITHUB_REF#refs/heads/}
           echo ${GITHUB_REF##*/}
+          echo ${GITHUB_REF##*/ == 'main'}
+          echo ${GITHUB_REF##*/ == 'dev'}
