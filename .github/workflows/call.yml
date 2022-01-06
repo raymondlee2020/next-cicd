@@ -7,6 +7,15 @@ on:
         type: string
         required: true
         description: test
+  workflow_dispatch:
+    inputs:
+      env:
+        type: choice
+        required: true
+        description: Environment to run
+        options:
+        - dev
+        - prod
 
 jobs:
   main:
@@ -15,5 +24,7 @@ jobs:
       - name: test
         run: |
           echo ${{ inputs.test }}
+          echo 'VAR=${{ github.event_name == 'workflow_dispatch' && github.event.inputs.test || inputs.env }}' >> $GITHUB_ENV
           echo 'HOST=${{ secrets.HOST }}' >> $GITHUB_ENV
-          echo ${{ secrets.HOST }}
+          echo ${{ secrets.HOST == '' }}
+          echo ${{ secrets.HOST == 'input test' }}
