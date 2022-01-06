@@ -22,4 +22,4 @@ jobs:
           echo $TEST
           echo ${GITHUB_REF#refs/heads/}
           echo ${GITHUB_REF##*/}
-          echo endsWith(github.ref, 'main')
+          echo endsWith(${{ github.ref }}, 'main')
