@@ -1,0 +1,19 @@
+name: call
+
+on:
+  workflow_call:
+    inputs:
+      test:
+        type: string
+        required: true
+        description: test
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: |
+          echo ${{ inputs.test }}
+          echo 'HOST=${{ secrets.HOST }}' >> $GITHUB_ENV
+          echo ${{ secrets.HOST }}
