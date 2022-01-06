@@ -17,10 +17,6 @@ on:
         - dev
         - prod
 
-env:
-  first: ${GITHUB_REF##*/}
-  condition: ${{ env.first == 'main' && 'is main' || 'not main' }}
-
 jobs:
   main:
     runs-on: ubuntu-latest
