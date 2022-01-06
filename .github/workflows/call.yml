@@ -25,6 +25,9 @@ jobs:
     steps:
       - name: test
         run: |
+          echo ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.env || inputs.test }}
+          echo ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.env || inputs.test }} > test.txt
+          cat test.txt
           echo ${{ inputs.test }}
           echo 'VAR=' >> $GITHUB_ENV
           echo ${{ secrets.HOST == '' }}
