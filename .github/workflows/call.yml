@@ -20,11 +20,12 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+      VAR: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.test || inputs.env }}
     steps:
       - name: test
         run: |
           echo ${{ inputs.test }}
-          echo 'VAR=${{ github.event_name == 'workflow_dispatch' && github.event.inputs.test || inputs.env }}' >> $GITHUB_ENV
-          echo 'HOST=${{ secrets.HOST }}' >> $GITHUB_ENV
+          echo 'VAR=' >> $GITHUB_ENV
           echo ${{ secrets.HOST == '' }}
-          echo ${{ secrets.HOST == 'input test' }}
+          echo ${{ secrets.VAR == 'input test' }}
