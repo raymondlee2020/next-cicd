@@ -20,3 +20,4 @@ jobs:
           echo ${{ github.event.inputs.env }}
           echo 'TEST="${{ secrets.HOST }}"' >> $GITHUB_ENV
           echo $TEST
+          echo ${GITHUB_REF#refs/heads/}
