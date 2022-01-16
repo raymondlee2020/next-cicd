@@ -24,6 +24,7 @@ jobs:
     steps:
       - name: Test
         run: |
+          echo "${{ env.ENV }}"
           echo ${{ env.ENV == 'main' }}
           echo ${{ github.event.inputs.env }}
           echo 'TEST="${{ secrets.HOST }}"' >> $GITHUB_ENV
