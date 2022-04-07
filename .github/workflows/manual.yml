@@ -4,44 +4,18 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      env:
-        type: choice
-        required: true
-        description: Environment to run
-        options:
-        - dev
-        - prod
 
 jobs:
   main:
     runs-on: ubuntu-latest
-    env:
-      ENV: ${GITHUB_REF##*/}
-      ENV1: ${{ 0 == 0 && 'true' || 'false' }}
-      ENV2: ${{ 0 == 1 && 'true' || 'false' }}
     steps:
       - name: Test
         run: |
-          echo "${{ env.ENV }}"
-          echo ${{ env.ENV == 'main' }}
-          echo ${{ github.event.inputs.env }}
-          echo 'TEST="${{ secrets.HOST }}"' >> $GITHUB_ENV
-          echo $TEST
-          echo ${GITHUB_REF#refs/heads/}
-          echo ${GITHUB_REF##*/}
-          echo "BRANCH=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
-      - name: ENV1
-        if: ${{ env.ENV1 == 'true' }}
-        run: |
-          echo 'It is true.'
-      - name: ENV2
-        if: ${{ env.ENV2 == 'false' }}
-        run: |
-          echo 'It is false.'
-  call:
-    needs: main
-    uses: raymondlee2020/next-cicd/.github/workflows/call.yml@main
-    with:
-      test: "input test"
+          touch no1.tar
+          echo "PART 1"
+          [ -e no1.tar ] && echo "no1 exist"
+          echo "PART 2"
+          [ -e *.tar ] && echo "tar exist"
+          echo "PART 3"
+          [ -e *.asdfghjkl ] && echo "asdfghkl exist"
+          echo "execute after check no such file"
