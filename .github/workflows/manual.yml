@@ -8,14 +8,10 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+      TEST: "TEST"
     steps:
       - name: Test
         run: |
-          touch no1.tar
-          echo "PART 1"
-          [ -e no1.tar ] && echo "no1 exist"
-          echo "PART 2"
-          [ -e *.tar ] && echo "tar exist"
-          echo "PART 3"
-          [ -e *.asdfghjkl ] && echo "asdfghkl exist"
-          echo "execute after check no such file"
+          export TEST_1="test1"
+          echo $${{ env.TEST }}_1
